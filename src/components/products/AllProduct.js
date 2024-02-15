@@ -2,26 +2,24 @@ import React, { useEffect } from "react";
 import useProductStore from "../../store/products";
 import Product from "./Product";
 
-export default function ProductList() {
+export default function AllProduct() {
   const { products, fetchProducts } = useProductStore();
-
   const Products = ({ products }) => {
-    const tenProducts = products.slice(0, 10);
-    const listProduct = tenProducts.map((product) => (
-      <Product key={product.id} product={product} />
+    const listProducts = products.map((product) => (
+      <Product key={products.id} product={product} />
     ));
-    return <>{listProduct}</>;
+    return <>{listProducts}</>;
   };
 
   useEffect(() => {
     fetchProducts();
   }, [fetchProducts]);
 
-  console.log(products);
-
   return (
     <>
-      <Products products={products} />
+      <div>
+        <Products products={products} />
+      </div>
     </>
   );
 }

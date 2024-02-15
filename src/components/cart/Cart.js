@@ -1,5 +1,6 @@
 import React from "react";
 import useCartStore from "../../store/cart";
+import { NavLink } from "react-router-dom";
 
 export default function Cart() {
   const items = useCartStore((state) => state.items);
@@ -10,12 +11,13 @@ export default function Cart() {
   const handleRemoveFromCart = (productId) => {
     removeFromCart(productId);
   };
-
   const ListCart = () => {
     const listCart = items.map((item, index) => (
       <>
         <li key={index} className="flex items-center my-3 pb-[20px]">
-          <div className="w-[500px] text-start">{item.title}</div>
+          <div className="w-[500px] text-start">
+            <NavLink to={`/products/${item.id}`}>{item.title}</NavLink>
+          </div>
           <div className="w-[200px] flex justify-center">
             <img
               className="w-[124px] h-[124px]"

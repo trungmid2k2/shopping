@@ -20,7 +20,7 @@ export default function DescriptionProduct() {
     );
   }
   const handleAddToCart = () => {
-    addToCart(product, quantity);
+    addToCart(product, parseInt(quantity, 10));
     // alert(`Thêm ${quantity} sản phẩm ${product.title} vào giỏ hàng!`);
     alert("Thêm vào giỏ hàng thành công");
   };
