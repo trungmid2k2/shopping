@@ -17,8 +17,6 @@ export default function ProductList() {
     fetchProducts();
   }, [fetchProducts]);
 
-  console.log(products);
-
   return (
     <>
       <Products products={products} />

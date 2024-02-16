@@ -5,9 +5,13 @@ import useCartStore from "../../store/cart";
 
 export default function DescriptionProduct() {
   const { id } = useParams();
+
   const { product, fetchProduct } = useDesCriptionStore();
+
   const addToCart = useCartStore((state) => state.addToCart);
+
   const [quantity, setQuantity] = useState(1);
+
   useEffect(() => {
     fetchProduct(id);
   }, [fetchProduct, id]);
@@ -19,6 +23,7 @@ export default function DescriptionProduct() {
       </div>
     );
   }
+
   const handleAddToCart = () => {
     addToCart(product, parseInt(quantity, 10));
     // alert(`Thêm ${quantity} sản phẩm ${product.title} vào giỏ hàng!`);
@@ -40,7 +45,7 @@ export default function DescriptionProduct() {
           </div>
           <div className="w-[555px] ">
             <div className="text-[16px] font-mediummb-[20px]">
-              {product.category}
+              {product.category.toUpperCase()}
             </div>
             <div className="mb-[50px]">
               <h2 className="text-[30px] font-medium">{product.title}</h2>
@@ -65,7 +70,9 @@ export default function DescriptionProduct() {
                 ADD TO CART
               </button>
             </div>
-            <div className="mb-[50px]">Categories: {product.category}</div>
+            <div className="mb-[50px]">
+              Categories: {product.category.toUpperCase()}
+            </div>
           </div>
         </div>
       </div>

@@ -3,6 +3,7 @@ import logo from "../../images/dnk.png";
 import CategoriesHeader from "./CategoriesHeader";
 import PagesHeader from "./PagesHeader";
 import { NavLink } from "react-router-dom";
+
 export default function Header() {
   return (
     <>

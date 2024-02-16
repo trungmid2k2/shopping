@@ -5,11 +5,14 @@ import useCartStore from "../../store/cart";
 
 export default function Product({ product }) {
   const addToCart = useCartStore((state) => state.addToCart);
+
   const [quantity, setQuantity] = useState(1);
+
   const handleAddToCart = () => {
     addToCart(product, quantity);
     alert("Thêm vào giỏ hàng thành công");
   };
+
   return (
     <>
       <div className="mx-[10px] mb-11 w-[248px] relative group">
@@ -44,6 +47,7 @@ export default function Product({ product }) {
         <div className="my-3 text-white "> ${product.price} </div>
         <div className="flex items-center my-3 text-white ">
           <div className="mr-2 text-[13.6px]">{product.rating.rate}</div>
+
           {product.rating.rate <= 1 ? (
             <>
               <StarFill /> <Star /> <Star /> <Star /> <Star />
@@ -64,7 +68,11 @@ export default function Product({ product }) {
             <>
               <StarFill /> <StarFill /> <StarFill /> <StarFill /> <StarFill />
             </>
-          ) : null}
+          ) : (
+            <>
+              <Star /> <Star /> <Star /> <Star /> <Star />
+            </>
+          )}
         </div>
       </div>
     </>

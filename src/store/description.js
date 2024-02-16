@@ -2,7 +2,9 @@ import { create } from "zustand";
 
 const useDesCriptionStore = create((set, get) => ({
   // product: {},
+
   product: null,
+
   fetchProduct: async (id) => {
     try {
       const response = await fetch(`https://fakestoreapi.com/products/${id}`);
@@ -13,4 +15,5 @@ const useDesCriptionStore = create((set, get) => ({
     }
   },
 }));
+
 export default useDesCriptionStore;

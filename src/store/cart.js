@@ -2,6 +2,7 @@ import { create } from "zustand";
 
 const useCartStore = create((set, getState) => ({
   items: [],
+
   addToCart: (product, quantity = 1) =>
     set((state) => {
       const existingProduct = state.items.find(
@@ -22,6 +23,14 @@ const useCartStore = create((set, getState) => ({
         };
       }
     }),
+
+  setQuantity: (productId, newQuantity) =>
+    set((state) => ({
+      items: state.items.map((item) =>
+        item.id === productId ? { ...item, quantity: newQuantity } : item
+      ),
+    })),
+
   getTotalPrice: () => {
     const state = getState(); // Lấy trạng thái hiện tại
     const totalPrice = state.items.reduce(
@@ -30,10 +39,12 @@ const useCartStore = create((set, getState) => ({
     );
     return totalPrice;
   },
+
   removeFromCart: (productId) =>
     set((state) => {
       const updatedItems = state.items.filter((item) => item.id !== productId);
       return { items: updatedItems };
     }),
 }));
+
 export default useCartStore;

@@ -2,9 +2,13 @@ import { create } from "zustand";
 
 const useProductStore = create((set, get) => ({
   products: [],
-  product: {},
+
+  product: null,
+
   id: null,
+
   setId: (id) => set({ id }),
+
   fetchProducts: async () => {
     const url = "https://fakestoreapi.com/products";
     try {
@@ -18,6 +22,7 @@ const useProductStore = create((set, get) => ({
       console.log(error);
     }
   },
+
   fetchDescriptionProduct: async () => {
     const id = get();
     const url = `https://fakestoreapi.com/products/${id}`;
@@ -33,4 +38,5 @@ const useProductStore = create((set, get) => ({
     }
   },
 }));
+
 export default useProductStore;

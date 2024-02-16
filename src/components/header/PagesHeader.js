@@ -5,6 +5,7 @@ import useCartStore from "../../store/cart";
 
 export default function PagesHeader() {
   const items = useCartStore((state) => state.items);
+
   return (
     <>
       <ul className="flex text-[15px]">
