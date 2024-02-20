@@ -3,9 +3,16 @@ import { create } from "zustand";
 const useProductStore = create((set, get) => ({
   products: [],
 
+  productsByCategory: [],
+
   product: null,
 
   id: null,
+
+  currentPage: 1,
+  itemsPage: 9,
+
+  setCurrentPage: (page) => set({ currentPage: page }),
 
   setId: (id) => set({ id }),
 

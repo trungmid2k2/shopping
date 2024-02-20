@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import useDesCriptionStore from "../../store/description";
 import useCartStore from "../../store/cart";
+import currency from "currency.js";
 
 export default function DescriptionProduct() {
   const { id } = useParams();
@@ -30,6 +31,8 @@ export default function DescriptionProduct() {
     alert("Thêm vào giỏ hàng thành công");
   };
 
+  const priceProduct = currency(product.price).format();
+
   return (
     <>
       <div className="my-[100px]">
@@ -51,7 +54,7 @@ export default function DescriptionProduct() {
               <h2 className="text-[30px] font-medium">{product.title}</h2>
             </div>
             <div className="mb-[50px]">
-              <span className="text-[24px] font-medium">${product.price}</span>+
+              <span className="text-[24px] font-medium">{priceProduct}</span>+
               Free Shipping
             </div>
             <div className="mb-[50px]">{product.description}</div>

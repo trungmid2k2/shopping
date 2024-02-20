@@ -4,14 +4,25 @@ import Product from "./Product";
 import BestSeller from "./BestSeller";
 
 export default function AllProduct() {
-  const { products, fetchProducts } = useProductStore();
+  const { products, fetchProducts, currentPage, itemsPage, setCurrentPage } =
+    useProductStore();
 
   const Products = ({ products }) => {
-    const listProducts = products.map((product) => (
+    const startI = (currentPage - 1) * itemsPage;
+
+    const endI = itemsPage + startI;
+
+    const listByPage = products.slice(startI, endI);
+
+    const listProducts = listByPage.map((product) => (
       <Product key={product.id} product={product} />
     ));
 
     return <>{listProducts}</>;
+  };
+
+  const handleChangePage = (page) => {
+    setCurrentPage(page);
   };
 
   useEffect(() => {
@@ -52,15 +63,39 @@ export default function AllProduct() {
               </div>
             </div>
           </div>
-          <div className="w-[75%] bg-[#005076] ">
+          <div className="w-[75%] bg-[#005076] h-[fit-content] ">
             {products.length === 0 ? (
               <div className="py-[30%] text-center">
                 <p className="text-white">Loading...</p>
               </div>
             ) : (
-              <div className="flex flex-wrap w-[810px] mx-auto py-5">
-                <Products products={products} />
-              </div>
+              <>
+                <div className="flex flex-wrap w-[810px] mx-auto py-5 ">
+                  <Products products={products} />
+                </div>
+                <div className="ml-[75px] mb-8 text-white">
+                  {Array.from(
+                    {
+                      length: Math.ceil(products.length / itemsPage),
+                    },
+                    (_, index) => (
+                      <>
+                        <button
+                          className={`px-5 py-2 border border-white
+                          ${
+                            currentPage === index + 1
+                              ? "active text-black border-black cursor-default bg-white"
+                              : ""
+                          }`}
+                          onClick={() => handleChangePage(index + 1)}
+                        >
+                          {index + 1}
+                        </button>
+                      </>
+                    )
+                  )}
+                </div>
+              </>
             )}
           </div>
         </div>

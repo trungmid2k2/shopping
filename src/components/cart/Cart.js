@@ -1,6 +1,7 @@
 import React from "react";
 import useCartStore from "../../store/cart";
 import ListItems from "./ListItems";
+import currency from "currency.js";
 
 export default function Cart() {
   const items = useCartStore((state) => state.items);
@@ -8,6 +9,10 @@ export default function Cart() {
   //   const getTotalQuantity = useCartStore((state) => state.getTotalQuantity);
 
   const getTotalPrice = useCartStore((state) => state.getTotalPrice);
+
+  const getTTPCurrency = currency(getTotalPrice());
+
+  const valueTTP = getTTPCurrency.format();
 
   return (
     <>
@@ -36,7 +41,7 @@ export default function Cart() {
           <div className="border-t border-black border-solid border-1 mt-[20px] flex">
             {/* <p>Total Quantity: {getTotalQuantity()}</p> */}
             <div className="w-[850px] text-start">Total prices: </div>
-            <p className=" w-[150px] text-center">${getTotalPrice()}</p>
+            <p className=" w-[150px] text-center">{valueTTP}</p>
 
             <div className="w-[200px] text-start"></div>
           </div>

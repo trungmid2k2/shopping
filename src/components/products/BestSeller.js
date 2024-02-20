@@ -17,6 +17,32 @@ export default function BestSeller() {
     );
   }
   const BestSellerProduct = ({ product }) => {
+    const countStar =
+      product.rating.rate <= 1 ? (
+        <>
+          <StarFill /> <Star /> <Star /> <Star /> <Star />
+        </>
+      ) : product.rating.rate <= 2.5 ? (
+        <>
+          <StarFill /> <StarFill /> <Star /> <Star /> <Star />
+        </>
+      ) : product.rating.rate <= 3.5 ? (
+        <>
+          <StarFill /> <StarFill /> <StarFill /> <Star /> <Star />
+        </>
+      ) : product.rating.rate <= 4.5 ? (
+        <>
+          <StarFill /> <StarFill /> <StarFill /> <StarFill /> <Star />
+        </>
+      ) : product.rating.rate <= 5 ? (
+        <>
+          <StarFill /> <StarFill /> <StarFill /> <StarFill /> <StarFill />
+        </>
+      ) : (
+        <>
+          <Star /> <Star /> <Star /> <Star /> <Star />
+        </>
+      );
     return (
       <>
         <div className="py-2 my-4 border-b border-black border-solid">
@@ -36,34 +62,7 @@ export default function BestSeller() {
                   {product.title}
                 </NavLink>
               </div>
-              <div className="flex">
-                {product.rating.rate <= 1 ? (
-                  <>
-                    <StarFill /> <Star /> <Star /> <Star /> <Star />
-                  </>
-                ) : product.rating.rate <= 2.5 ? (
-                  <>
-                    <StarFill /> <StarFill /> <Star /> <Star /> <Star />
-                  </>
-                ) : product.rating.rate <= 3.5 ? (
-                  <>
-                    <StarFill /> <StarFill /> <StarFill /> <Star /> <Star />
-                  </>
-                ) : product.rating.rate <= 4.5 ? (
-                  <>
-                    <StarFill /> <StarFill /> <StarFill /> <StarFill /> <Star />
-                  </>
-                ) : product.rating.rate <= 5 ? (
-                  <>
-                    <StarFill /> <StarFill /> <StarFill /> <StarFill />{" "}
-                    <StarFill />
-                  </>
-                ) : (
-                  <>
-                    <Star /> <Star /> <Star /> <Star /> <Star />
-                  </>
-                )}
-              </div>
+              <div className="flex">{countStar}</div>
               <div>${product.price}</div>
             </div>
           </div>

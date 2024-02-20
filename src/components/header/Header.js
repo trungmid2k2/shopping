@@ -1,10 +1,16 @@
-import React from "react";
+import React, { useEffect } from "react";
 import logo from "../../images/dnk.png";
 import CategoriesHeader from "./CategoriesHeader";
 import PagesHeader from "./PagesHeader";
 import { NavLink } from "react-router-dom";
+import useProductStore from "../../store/products";
 
 export default function Header() {
+  const { products, fetchProducts } = useProductStore();
+  useEffect(() => {
+    fetchProducts();
+  }, [fetchProducts]);
+
   return (
     <>
       <div className="py-[15px] bg-[rgba(0,0,0,0.07)]">
@@ -20,7 +26,7 @@ export default function Header() {
               </NavLink>
             </div>
             <div>
-              <CategoriesHeader />
+              <CategoriesHeader products={products} />
             </div>
           </div>
           <div>

@@ -7,6 +7,7 @@ import { Route, Routes } from "react-router-dom";
 import DescriptionProduct from "./components/description/DescriptionProduct";
 import Cart from "./components/cart/Cart";
 import AllProduct from "./components/products/AllProduct";
+import ProductsByCategory from "./components/products/ProductsByCategory";
 
 function App() {
   return (
@@ -20,6 +21,10 @@ function App() {
         <Route path={`/products/:id`} element={<DescriptionProduct />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/allproduct" element={<AllProduct />} />
+        <Route
+          path={`/products/category/:category`}
+          element={<ProductsByCategory />}
+        />
       </Routes>
 
       <div className="bg-[#001d2b] text-white">
